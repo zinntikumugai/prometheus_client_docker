@@ -1,0 +1,38 @@
+version: '3'
+services:
+  node-exporter:
+    # node-exporter
+    image: quay.io/prometheus/node-exporter
+    ports:
+      - 9100:9100
+    command: "--path.rootfs=/host"
+    volumes:
+      - "/:/host:ro,rslave"
+    restart: always
+    network_mode: host
+
+  container-exporter:
+    # docker-container-exporter
+    image: gcr.io/cadvisor/cadvisor:latest
+    restart: always
+    ports:
+      - 9101:8080
+    volumes:
+      - /:/rootfs:ro
+      - /var/run:/var/run:ro
+      - /sys:/sys:ro
+      - /var/lib/docker/:/var/lib/docker:ro
+      - /dev/disk/:/dev/disk:ro
+    devices:
+      - '/dev/kmsg:/dev/kmsg'
+    privileged: true
+
+  promtail:
+    # promtail-docker
+    image: grafana/promtail:2.7.1
+    volumes:
+      - ./promtail-local-config.yaml:/etc/promtail/config.yaml:ro
+      - /var/run/docker.sock:/var/run/docker.sock
+    command: -config.file=/etc/promtail/config.yaml
+    ports:
+      - "9080:9080"
