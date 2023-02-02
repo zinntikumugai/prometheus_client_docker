@@ -1,0 +1,12 @@
+static_config:
+  - replace_name: $LOKI_URL
+    data: "http://192.168.0.9:3100/loki/api/v1/push"
+  - replace_name: $HOST_NAME
+    data: xxxxxxxx
+  - replace_name: $HOST_IP
+    data: 1.1.1.1
+
+use_container:
+  - node-exporter
+  - container-exporter
+  - promtail-docker
