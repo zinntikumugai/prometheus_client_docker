@@ -1,0 +1,22 @@
+name: Setup
+
+on:
+  push:
+
+env:
+  DOCKER_BUILDKIT: 1
+  COMPOSE_DOCKER_CLI_BUILD: 1
+
+jobs:
+  test:
+    runs-on: ubuntu-20.04
+    steps:
+      # setup
+      - uses: actions/checkout@v3
+
+      # GitHub Actions
+      - name: Run actionlint
+        shell: bash
+        run: |
+          bash <(curl https://raw.githubusercontent.com/rhysd/actionlint/main/scripts/download-actionlint.bash)
+          ./actionlint -color
