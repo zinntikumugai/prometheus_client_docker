@@ -1,6 +1,6 @@
 ## prometheus_client_docker
 
-**とても雑に** dockerコンテアで動かすExporter類
+**とても雑に** dockerコンテナで動かすExporter類
 
 | | | Port | github | docker |
 |:--|:--|:--|:--|:--|
