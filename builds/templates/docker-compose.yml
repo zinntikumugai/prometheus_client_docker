@@ -27,11 +27,11 @@ services:
       - '/dev/kmsg:/dev/kmsg'
     privileged: true
 
-  promtail:
+  promtail-docker:
     # promtail-docker
     image: grafana/promtail:2.7.1
     volumes:
-      - ./promtail-local-config.yaml:/etc/promtail/config.yaml:ro
+      - ./promtail-config.yaml:/etc/promtail/config.yaml:ro
       - /var/run/docker.sock:/var/run/docker.sock
     command: -config.file=/etc/promtail/config.yaml
     ports:

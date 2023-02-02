@@ -1,0 +1,3 @@
+build_config.yaml
+docker-compose.yml
+promtail-config.yaml

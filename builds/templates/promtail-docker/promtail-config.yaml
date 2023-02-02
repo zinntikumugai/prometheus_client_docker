@@ -7,8 +7,11 @@ positions:
   filename: /tmp/positions.yaml
 
 clients:
-  - url: http://192.168.0.9:3100/loki/api/v1/push
+  - url: $LOKI_URL
     tenant_id: tenant1
+    external_labels:
+      host: $HOST_NAME
+      instance: $HOST_IP
 
 scrape_configs:
   - job_name: flog_scrape 
@@ -23,3 +26,9 @@ scrape_configs:
         target_label: 'logstream'
       - source_labels: ['__meta_docker_container_label_logging_jobname']
         target_label: 'job'
+      - source_labels: ['__meta_docker_container_label_com_docker_compose_project']
+        target_label: 'docker_compose_project'
+      - source_labels: ['__meta_docker_container_label_com_docker_compose_service']
+        target_label: 'docker_compose_service'
+      - source_labels: ['__meta_docker_port_public']
+        target_label: 'docker_host_port'

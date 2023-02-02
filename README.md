@@ -6,7 +6,7 @@ dockerコンテアナで動かすExporter類
 |:--|:--|:--|
 | node-exporter | マシン自体のExporter | 9100 |
 | container-exporter | DockerコンテナのExporter | 9101 |
-| promtail | Dockerコンテナログ | 9080 |
+| promtail-docker | Dockerコンテナログ | 9080 |
 
 ## node-exporter
 
@@ -17,7 +17,7 @@ dockerコンテアナで動かすExporter類
 
 各Dockerコンテナの状態を吐き出す
 
-## promtail
+## promtail-docker
 
 ログをlokiに吐き出すやつ  
 Dockerコンテナの標準出力をlokiに出力する
