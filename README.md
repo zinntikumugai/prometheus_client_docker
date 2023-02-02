@@ -32,6 +32,7 @@ cp builds/build_config.yaml .
 vim build_config.yaml
 # fix
 cd builds
+docker compose build
 docker compose run --rm buildtool python builds/build_scripts.py
 ```
 

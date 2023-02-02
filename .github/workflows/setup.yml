@@ -20,3 +20,8 @@ jobs:
         run: |
           bash <(curl https://raw.githubusercontent.com/rhysd/actionlint/main/scripts/download-actionlint.bash)
           ./actionlint -color
+
+      - name: build
+        run: |
+          docker compose build
+        working-directory: builds
