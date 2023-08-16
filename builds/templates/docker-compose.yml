@@ -10,6 +10,11 @@ services:
       - "/:/host:ro,rslave"
     restart: always
     network_mode: host
+    logging:
+      driver: json-file
+      opptions:
+        max-size: 10m
+        max-file: "3"
 
   container-exporter:
     # docker-container-exporter
@@ -26,6 +31,11 @@ services:
     devices:
       - '/dev/kmsg:/dev/kmsg'
     privileged: true
+    logging:
+      driver: json-file
+      options:
+        max-size: 10m
+        max-file: "3"
 
   promtail-docker:
     # promtail-docker
@@ -36,3 +46,9 @@ services:
     command: -config.file=/etc/promtail/config.yaml
     ports:
       - "9080:9080"
+    logging:
+      driver: json-file
+      options:
+        max-size: 10m
+        max-file: "3"
+
