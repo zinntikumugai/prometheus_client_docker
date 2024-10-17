@@ -38,7 +38,7 @@ services:
 
   promtail-docker:
     # promtail-docker
-    image: grafana/promtail:2.7.3
+    image: grafana/promtail:3.2.1
     volumes:
       - ./promtail-config.yaml:/etc/promtail/config.yaml:ro
       - /var/run/docker.sock:/var/run/docker.sock
